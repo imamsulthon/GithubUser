@@ -1,5 +1,6 @@
 package com.mamsky.accenture.data.di
 
+import com.mamsky.accenture.data.local.UserDetailFavoriteDao
 import com.mamsky.accenture.data.remote.api.UserApi
 import com.mamsky.accenture.data.repository.UserRepository
 import com.mamsky.accenture.data.repository.UserRepositoryImpl
@@ -18,8 +19,9 @@ object UserModule {
     @Singleton
     fun provideUserRepository(
         userApi: UserApi,
+        userDao: UserDetailFavoriteDao,
     ): UserRepository {
-        return UserRepositoryImpl(userApi)
+        return UserRepositoryImpl(userApi, userDao)
     }
 
 }

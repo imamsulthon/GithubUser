@@ -3,6 +3,7 @@ package com.mamsky.accenture.data.repository
 import com.mamsky.accenture.base.BaseResult
 import com.mamsky.accenture.data.model.UserDetailViewParam
 import com.mamsky.accenture.data.model.UserViewParam
+import kotlinx.coroutines.flow.Flow
 
 interface UserRepository {
 
@@ -12,6 +13,14 @@ interface UserRepository {
 
     suspend fun searchUsers(query: String): BaseResult<List<UserViewParam>>
 
-    suspend fun getFavorites(): List<UserViewParam>
+    fun getFavorites(): Flow<List<UserViewParam>>
+
+    suspend fun saveUserAsFavorite(data: UserDetailViewParam)
+
+    suspend fun clearUserAsFavorite(data: UserDetailViewParam)
+
+    suspend fun isFavorite(id: Int): Boolean
+
+    suspend fun isFavorite(userName: String): Boolean
 
 }

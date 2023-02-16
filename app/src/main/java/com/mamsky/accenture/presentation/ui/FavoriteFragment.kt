@@ -21,18 +21,15 @@ class FavoriteFragment: BaseFragment<FragmentUserListBinding>() {
 
     override fun getLayoutId(): Int = R.layout.fragment_user_list
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewModel.fetchFavorites()
+    override fun onStart() {
+        super.onStart()
+        viewModel.getFavorites()
     }
 
     override fun setContent() {
         super.setContent()
         with(getViewBinder()) {
             fabFilter.visibility = View.VISIBLE
-            fabFilter.setOnClickListener {
-                viewModel.fetchFavorites(true)
-            }
         }
     }
 

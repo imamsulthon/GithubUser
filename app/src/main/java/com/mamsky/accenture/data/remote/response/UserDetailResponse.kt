@@ -14,7 +14,7 @@ data class UserDetailResponse(
     @SerializedName("created_at")
     val createdAt: String?,
     @SerializedName("email")
-    val email: Any?,
+    val email: String?,
     @SerializedName("events_url")
     val eventsUrl: String?,
     @SerializedName("followers")

@@ -40,6 +40,12 @@ class UserDetailActivity : BaseActivity<ActivityUserDetailBinding>() {
                 setContent(it)
             }
         }
+        viewModel.isFavorite().observe(this) {
+            it?.let {
+                isFavorite = it
+                setFavorite(isFavorite)
+            }
+        }
     }
 
     override fun setContent() {
@@ -47,10 +53,6 @@ class UserDetailActivity : BaseActivity<ActivityUserDetailBinding>() {
         with(getViewBinder()){
             toolbarStart.setOnClickListener { onBackPressed() }
             toolbarTitle.text = "@$username"
-            toolbarEnd.setImageResource(
-                if (isFavorite) R.drawable.ic_favorite
-                else R.drawable.ic_unfavorite
-            )
             toolbarEnd.setOnClickListener {
                 onClickFavorite()
             }
@@ -68,18 +70,25 @@ class UserDetailActivity : BaseActivity<ActivityUserDetailBinding>() {
             tvFollowers.text = item.followers.toString()
             tvFollowing.text = item.following.toString()
             tvFullResponse.text = item.createDetails()
+            viewModel.checkFavorite(username)
         }
     }
 
     private fun onClickFavorite() {
+        printLog("onClickFavorite value $isFavorite")
         if (isFavorite) {
-            getViewBinder().toolbarEnd.setImageResource(R.drawable.ic_unfavorite)
-            viewModel.saveAsFavorite(username)
+            viewModel.removeAsFavorite(username)
         } else {
-            getViewBinder().toolbarEnd.setImageResource(R.drawable.ic_favorite)
-            viewModel.saveAsUnFavorite(username)
+            viewModel.saveAsFavorite(username)
         }
-        isFavorite = !isFavorite
+    }
+
+    private fun setFavorite(isFavorite: Boolean) {
+        printLog("setFavorite value $isFavorite")
+        getViewBinder().toolbarEnd.setImageResource(
+            if (isFavorite) R.drawable.ic_favorite
+            else R.drawable.ic_unfavorite
+        )
     }
 
     private fun UserDetailViewParam.createDetails(): String = "Other Info: \n" +

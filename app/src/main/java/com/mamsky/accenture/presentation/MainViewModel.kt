@@ -1,9 +1,7 @@
 package com.mamsky.accenture.presentation
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.util.Log
+import androidx.lifecycle.*
 import com.mamsky.accenture.base.BaseResult
 import com.mamsky.accenture.data.model.UserDetailViewParam
 import com.mamsky.accenture.data.model.UserViewParam
@@ -21,15 +19,16 @@ class MainViewModel @Inject constructor(
     private val _loading = MutableLiveData<Boolean>()
     private val _error = MutableLiveData<Boolean>()
     private val _liveData = MutableLiveData<List<UserViewParam>>()
-    private var _liveDataFavorites = MutableLiveData<List<UserViewParam>>()
     private val _userDetail = MutableLiveData<UserDetailViewParam>()
+    private val _isFavorite = MutableLiveData<Boolean>()
 
     // getter value
     fun onLoading(): LiveData<Boolean> = _loading
     fun onError(): LiveData<Boolean> = _error
     fun getUsers(): LiveData<List<UserViewParam>> = _liveData
-    fun getFavorites(): LiveData<List<UserViewParam>> = _liveDataFavorites
+    fun getFavorites(): LiveData<List<UserViewParam>> = repository.getFavorites().asLiveData()
     fun getUserDetail(): LiveData<UserDetailViewParam> = _userDetail
+    fun isFavorite() = _isFavorite
 
     fun fetchList() {
         _loading.postValue(true)
@@ -47,27 +46,56 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    private var tempData: UserDetailViewParam? = null
+
     fun fetchDetail(username: String) {
         viewModelScope.launch {
             val result = repository.getUserDetails(username)
+            tempData = result
             _userDetail.postValue(result)
         }
     }
 
-    fun fetchFavorites(sorted: Boolean = false) {
+    fun saveAsFavorite(username: String) {
         viewModelScope.launch {
-            val favorites = repository.getFavorites()
-            if (sorted) favorites.sortedBy { it.login }
-            _liveDataFavorites.postValue(favorites)
+            tempData?.let {
+                if (username == it.login)
+                    try {
+                        repository.saveUserAsFavorite(it)
+                        printLog("saveAsFavorite $username")
+                        _isFavorite.postValue(true)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+            }
         }
     }
 
-    fun saveAsFavorite(username: String) {
-
+    fun removeAsFavorite(username: String) {
+        viewModelScope.launch {
+            tempData?.let {
+                if (username == it.login)
+                    try {
+                        repository.clearUserAsFavorite(it)
+                        printLog("setAsUnFavorite $username")
+                        _isFavorite.postValue(false)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+            }
+        }
     }
 
-    fun saveAsUnFavorite(username: String) {
+    fun checkFavorite(username: String) {
+        viewModelScope.launch {
+            val f = repository.isFavorite(username)
+            printLog("setAsUnFavorite $username $f")
+            _isFavorite.postValue(f)
+        }
+    }
 
+    private fun printLog(msg: String) {
+        Log.d("MainViewModel", msg)
     }
 
 }
