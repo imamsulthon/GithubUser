@@ -1,5 +1,6 @@
 package com.mamsky.accenture.presentation.ui
 
+import android.content.Intent
 import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -31,16 +32,29 @@ class PopularUserFragment: BaseFragment<FragmentUserListBinding>() {
                 setRecyclerView(it)
             }
         }
+
+        viewModel.onError().observe(viewLifecycleOwner) {
+            // todo
+        }
+
+        viewModel.onLoading().observe(viewLifecycleOwner) {
+            // todo
+        }
     }
 
     private fun setRecyclerView(list: List<UserViewParam>) {
         with(getViewBinder()) {
             recyclerview.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            recyclerview.adapter = UserListAdapter(list)
+            recyclerview.adapter = UserListAdapter(list)  {
+                printLog("onclick $it")
+                startActivity(Intent(requireContext(), UserDetailActivity::class.java).apply {
+                    putExtra(UserDetailActivity.TAG_DATA, it)
+                })
+            }
         }
     }
 
     override fun printLog(msg: String) {
-        Log.d("PopularFrag", msg)
+        Log.d("PopularUserFragment", msg)
     }
 }

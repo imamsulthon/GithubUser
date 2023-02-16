@@ -4,10 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/ImamsTakeHome/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1865" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/ImamsTakeHome/app/src/main/res/drawable/_211686_back_arrow_icon.xml" value="0.1865" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/ImamsTakeHome/app/src/main/res/drawable/abstract_user_flat_3.xml" value="0.1865" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/ImamsTakeHome/app/src/main/res/drawable/ic_favorite.xml" value="0.1865" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/ImamsTakeHome/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1865" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/ImamsTakeHome/app/src/main/res/drawable/ic_unfavorite.xml" value="0.1865" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/ImamsTakeHome/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/ImamsTakeHome/app/src/main/res/layout/activity_user_detail.xml" value="0.25" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/ImamsTakeHome/app/src/main/res/layout/content_user_detail.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/ImamsTakeHome/app/src/main/res/layout/fragment_popular.xml" value="0.25" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/ImamsTakeHome/app/src/main/res/layout/fragment_second.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/ImamsTakeHome/app/src/main/res/layout/fragment_user_list.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/ImamsTakeHome/app/src/main/res/layout/item_user.xml" value="0.25" />
       </map>

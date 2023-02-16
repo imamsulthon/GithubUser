@@ -10,7 +10,8 @@ import com.mamsky.accenture.data.model.UserViewParam
 import com.mamsky.accenture.databinding.ItemUserBinding
 
 class UserListAdapter(
-    private var list: List<UserViewParam>
+    private var list: List<UserViewParam>,
+    private val callback: (login: String) -> Unit?,
 ): RecyclerView.Adapter<UserListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
@@ -20,7 +21,7 @@ class UserListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.onBind(list[position])
         holder.itemView.setOnClickListener {
-            // todo
+            callback.invoke(list[position].login)
         }
     }
 

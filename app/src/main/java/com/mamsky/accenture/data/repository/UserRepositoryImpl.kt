@@ -3,6 +3,8 @@ package com.mamsky.accenture.data.repository
 import android.util.Log
 import com.mamsky.accenture.base.BaseResult
 import com.mamsky.accenture.data.DummyExt
+import com.mamsky.accenture.data.model.UserDetailViewParam
+import com.mamsky.accenture.data.model.UserMapper.emptyUserDetail
 import com.mamsky.accenture.data.model.UserMapper.toViewParam
 import com.mamsky.accenture.data.model.UserViewParam
 import com.mamsky.accenture.data.remote.api.UserApi
@@ -29,8 +31,16 @@ class UserRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getUserDetails(id: Int): UserViewParam {
-        TODO("Not yet implemented")
+    override suspend fun getUserDetails(userName: String): UserDetailViewParam {
+        return with(Dispatchers.IO) {
+            try {
+                val response = userApi.getDetailUser(userName)
+                response.toViewParam()
+            } catch (e: Exception) {
+                e.printStackTrace()
+                emptyUserDetail(userName)
+            }
+        }
     }
 
     override suspend fun searchUsers(query: String): BaseResult<List<UserViewParam>> {
@@ -52,13 +62,11 @@ class UserRepositoryImpl @Inject constructor(
 
     override suspend fun getFavorites(): List<UserViewParam> {
         // todo implement real database
-
         with(Dispatchers.IO) {
             val response = DummyExt.getDummyResponse()
             printLog("data size ${response.size} data $response")
             return response.map {
-                printLog("mapping... ${it.id} ${it.login} ${it.url}")
-                it.toViewParam()
+                it.toViewParam().apply { isFavorite = true }
             }
         }
     }

@@ -6,9 +6,9 @@ import android.util.Log
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
+import androidx.viewbinding.ViewBinding
 
-abstract class BaseActivity<out T: ViewDataBinding>: AppCompatActivity(), BaseFragment.Callback {
+abstract class BaseActivity<out T: ViewBinding>: AppCompatActivity(), BaseFragment.Callback {
 
     private lateinit var viewBinder: T
 
@@ -27,7 +27,7 @@ abstract class BaseActivity<out T: ViewDataBinding>: AppCompatActivity(), BaseFr
 
     private fun performViewBinding() {
         viewBinder = DataBindingUtil.setContentView(this, getLayoutId())
-        viewBinder.executePendingBindings()
+        setContentView(viewBinder.root)
     }
 
     fun getViewBinder() = viewBinder

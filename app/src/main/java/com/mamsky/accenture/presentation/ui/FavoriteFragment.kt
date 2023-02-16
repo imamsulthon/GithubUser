@@ -1,5 +1,6 @@
 package com.mamsky.accenture.presentation.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -22,7 +23,17 @@ class FavoriteFragment: BaseFragment<FragmentUserListBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.fetchFavorites(true)
+        viewModel.fetchFavorites()
+    }
+
+    override fun setContent() {
+        super.setContent()
+        with(getViewBinder()) {
+            fabFilter.visibility = View.VISIBLE
+            fabFilter.setOnClickListener {
+                viewModel.fetchFavorites(true)
+            }
+        }
     }
 
     override fun subscribeToLiveData() {
@@ -38,12 +49,17 @@ class FavoriteFragment: BaseFragment<FragmentUserListBinding>() {
     private fun setRecyclerView(list: List<UserViewParam>) {
         with(getViewBinder()) {
             recyclerview.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            recyclerview.adapter = UserListAdapter(list)
+            recyclerview.adapter = UserListAdapter(list) {
+                printLog("onclick $it")
+                startActivity(Intent(requireContext(), UserDetailActivity::class.java).apply {
+                    putExtra(UserDetailActivity.TAG_DATA, it)
+                })
+            }
         }
     }
 
     override fun printLog(msg: String) {
-        Log.d("FavFragment", msg)
+        Log.d("FavoriteFragment", msg)
     }
 
 }
