@@ -7,12 +7,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mamsky.accenture.R
-import com.mamsky.core.base.BaseFragment
-import com.mamsky.data.user.model.UserViewParam
 import com.mamsky.accenture.databinding.FragmentUserListBinding
 import com.mamsky.accenture.presentation.adapter.UserListAdapter
 import com.mamsky.accenture.presentation.ui.MainViewModel
 import com.mamsky.accenture.presentation.ui.detail.UserDetailActivity
+import com.mamsky.core.base.BaseFragment
+import com.mamsky.data.user.model.UserViewParam
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -27,7 +27,6 @@ class PopularUserFragment: BaseFragment<FragmentUserListBinding>() {
     // improve with paging adapter
     private val adapter: UserListAdapter by lazy {
         UserListAdapter(listOf()) {
-            printLog("onclick $it")
             startActivity(Intent(requireContext(), UserDetailActivity::class.java).apply {
                 putExtra(UserDetailActivity.TAG_DATA, it)
             })
@@ -57,7 +56,6 @@ class PopularUserFragment: BaseFragment<FragmentUserListBinding>() {
                 return@observe
             }
             list.let {
-                printLog("data ${it.size} $it")
                 showEmptyState(false)
                 setRecyclerView(it)
             }
@@ -82,7 +80,6 @@ class PopularUserFragment: BaseFragment<FragmentUserListBinding>() {
         job?.cancel()
         job = lifecycleScope.launch {
             delay(500)
-            printLog("onSearch $query")
             viewModel.search(query)
         }
         job?.start()

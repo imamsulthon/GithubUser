@@ -4,11 +4,11 @@ import android.util.Log
 import com.mamsky.core.base.BaseResult
 import com.mamsky.data.user.local.UserDetailFavoriteDao
 import com.mamsky.data.user.model.UserDetailViewParam
+import com.mamsky.data.user.model.UserViewParam
 import com.mamsky.data.user.model.mapper.UserMapper.emptyUserDetail
 import com.mamsky.data.user.model.mapper.UserMapper.mapToViewParam
 import com.mamsky.data.user.model.mapper.UserMapper.toEntity
 import com.mamsky.data.user.model.mapper.UserMapper.toViewParam
-import com.mamsky.data.user.model.UserViewParam
 import com.mamsky.data.user.remote.api.UserApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow

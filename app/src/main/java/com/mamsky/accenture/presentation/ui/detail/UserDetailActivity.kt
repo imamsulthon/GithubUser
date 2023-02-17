@@ -4,9 +4,9 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import com.bumptech.glide.Glide
 import com.mamsky.accenture.R
+import com.mamsky.accenture.databinding.ActivityUserDetailBinding
 import com.mamsky.core.base.BaseActivity
 import com.mamsky.data.user.model.UserDetailViewParam
-import com.mamsky.accenture.databinding.ActivityUserDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,7 +25,6 @@ class UserDetailActivity : BaseActivity<ActivityUserDetailBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         intent.getStringExtra(TAG_DATA)?.let {
-            printLog("extras $it")
             username = it
             viewModel.fetchDetail(it)
         }
@@ -35,7 +34,6 @@ class UserDetailActivity : BaseActivity<ActivityUserDetailBinding>() {
         super.subscribeToLiveData()
         viewModel.getUserDetail().observe(this) {
             it?.let {
-                printLog("getUserDetail $it")
                 setContent(it)
             }
         }
@@ -74,7 +72,6 @@ class UserDetailActivity : BaseActivity<ActivityUserDetailBinding>() {
     }
 
     private fun onClickFavorite() {
-        printLog("onClickFavorite value $isFavorite")
         if (isFavorite) {
             viewModel.removeAsFavorite(username)
         } else {
@@ -83,7 +80,6 @@ class UserDetailActivity : BaseActivity<ActivityUserDetailBinding>() {
     }
 
     private fun setFavorite(isFavorite: Boolean) {
-        printLog("setFavorite value $isFavorite")
         getViewBinder().toolbarEnd.setImageResource(
             if (isFavorite) R.drawable.ic_favorite
             else R.drawable.ic_unfavorite

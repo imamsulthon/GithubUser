@@ -2,21 +2,18 @@ package com.mamsky.accenture.presentation.ui
 
 import android.os.Bundle
 import android.widget.SearchView
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mamsky.accenture.R
-import com.mamsky.core.base.BaseActivity
 import com.mamsky.accenture.databinding.ActivityMainBinding
 import com.mamsky.accenture.presentation.adapter.HomeTabAdapter
 import com.mamsky.accenture.presentation.ui.favorite.FavoriteFragment
 import com.mamsky.accenture.presentation.ui.popular.PopularUserFragment
+import com.mamsky.core.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>() {
-
-    private val viewModel: MainViewModel by viewModels()
 
     override fun getLayoutId(): Int = R.layout.activity_main
 
@@ -25,22 +22,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         initPageAdapter()
     }
 
-    override fun subscribeToLiveData() {
-        super.subscribeToLiveData()
-
-        viewModel.getUsers().observe(this) {
-            it?.let {
-                it.forEach { x -> printLog("data ${x.login}") }
-            }
-        }
-    }
-
     private fun initPageAdapter() {
         with(getViewBinder()) {
             val sectionPagerAdapter = HomeTabAdapter(supportFragmentManager, lifecycle, fragments)
             viewPager.adapter = sectionPagerAdapter
             TabLayoutMediator(tabLayout, viewPager) { tab, pos ->
-                printLog("OnTabSelect $pos ${tab.isSelected}")
                 selectedFragment = pos
                 tab.text = when (pos) {
                     0 -> "Popular"
@@ -81,29 +67,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
 
     private fun proceedSearch(query: String?) {
-        printLog("isOnLayout ${popularFrag.isInLayout} " +
-                "isVisible ${popularFrag.isVisible}"
-        )
-        printLog("isOnLayout 2 ${favoriteFrag.isInLayout}" +
-                " isVisible ${favoriteFrag.isVisible}"
-        )
-        if (selectedFragment == 0) {
-            printLog("selected 0")
+        if (selectedFragment == 0 && popularFrag.isVisible) {
             query?.let { popularFrag.onSearch(it) }
-        } else if (selectedFragment == 1) {
-            printLog("selected 1")
+        } else if (selectedFragment == 1 && favoriteFrag.isVisible) {
             query?.let { favoriteFrag.onSearch(it) }
         }
     }
 
     override fun printLog(msg: String) {
         println("MainActivity: $msg")
-    }
-
-    @Deprecated("Deprecated in Java")
-    override fun onBackPressed() {
-        printLog("onBackPressed")
-        super.onBackPressed()
     }
 
 }

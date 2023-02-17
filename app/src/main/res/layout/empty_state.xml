@@ -15,4 +15,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:textSize="14sp"
         android:text="No Result"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

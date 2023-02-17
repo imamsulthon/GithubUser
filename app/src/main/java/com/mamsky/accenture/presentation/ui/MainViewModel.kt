@@ -41,7 +41,6 @@ open class MainViewModel @Inject constructor(
     }
 
     open fun search(userName: String) {
-        printLog("search $userName")
         viewModelScope.launch {
             when (val result = repository.searchUsers(userName)) {
                 is BaseResult.Success -> {

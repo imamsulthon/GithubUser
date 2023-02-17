@@ -2,9 +2,9 @@ package com.mamsky.accenture.di
 
 import android.app.Application
 import androidx.room.Room
+import com.mamsky.accenture.utils.APP_DATABASE_NAME
 import com.mamsky.accenture.utils.AppDatabase
 import com.mamsky.data.user.local.UserDetailFavoriteDao
-import com.mamsky.accenture.utils.APP_DATABASE_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

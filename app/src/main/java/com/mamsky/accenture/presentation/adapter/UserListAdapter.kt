@@ -37,7 +37,6 @@ class UserListAdapter(
     inner class ViewHolder(private val binding: ItemUserBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun onBind(item: UserViewParam) {
-            printLog("item ${item.avatarUrl}")
             with(binding) {
                 tvTitle.text = item.login
                 tvDesc1.text = item.url

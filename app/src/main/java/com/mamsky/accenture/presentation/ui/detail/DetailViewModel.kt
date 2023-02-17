@@ -37,7 +37,6 @@ class DetailViewModel @Inject constructor(
                 if (username == it.login)
                     try {
                         repository.saveUserAsFavorite(it)
-                        printLog("saveAsFavorite $username")
                         _isFavorite.postValue(true)
                     } catch (e: Exception) {
                         e.printStackTrace()
@@ -52,7 +51,6 @@ class DetailViewModel @Inject constructor(
                 if (username == it.login)
                     try {
                         repository.clearUserAsFavorite(it)
-                        printLog("setAsUnFavorite $username")
                         _isFavorite.postValue(false)
                     } catch (e: Exception) {
                         e.printStackTrace()
@@ -64,7 +62,6 @@ class DetailViewModel @Inject constructor(
     fun checkFavorite(username: String) {
         viewModelScope.launch {
             val f = repository.isFavorite(username)
-            printLog("setAsUnFavorite $username $f")
             _isFavorite.postValue(f)
         }
     }
