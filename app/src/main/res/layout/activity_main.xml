@@ -17,10 +17,11 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:orientation="vertical">
 
-            <SearchView
+            <androidx.appcompat.widget.SearchView
                 android:id="@+id/searchView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                app:defaultQueryHint="Try Search User"/>
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"

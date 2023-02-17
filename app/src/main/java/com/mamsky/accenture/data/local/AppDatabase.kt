@@ -1,4 +1,4 @@
-package com.mamsky.accenture.base
+package com.mamsky.accenture.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

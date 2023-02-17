@@ -2,7 +2,7 @@ package com.mamsky.accenture.di
 
 import android.app.Application
 import androidx.room.Room
-import com.mamsky.accenture.base.AppDatabase
+import com.mamsky.accenture.data.local.AppDatabase
 import com.mamsky.accenture.data.local.UserDetailFavoriteDao
 import dagger.Module
 import dagger.Provides

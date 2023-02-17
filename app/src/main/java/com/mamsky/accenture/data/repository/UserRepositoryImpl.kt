@@ -2,13 +2,12 @@ package com.mamsky.accenture.data.repository
 
 import android.util.Log
 import com.mamsky.accenture.base.BaseResult
-import com.mamsky.accenture.data.DummyExt
 import com.mamsky.accenture.data.local.UserDetailFavoriteDao
 import com.mamsky.accenture.data.model.UserDetailViewParam
-import com.mamsky.accenture.data.model.UserMapper.emptyUserDetail
-import com.mamsky.accenture.data.model.UserMapper.mapToViewParam
-import com.mamsky.accenture.data.model.UserMapper.toEntity
-import com.mamsky.accenture.data.model.UserMapper.toViewParam
+import com.mamsky.accenture.data.model.mapper.UserMapper.emptyUserDetail
+import com.mamsky.accenture.data.model.mapper.UserMapper.mapToViewParam
+import com.mamsky.accenture.data.model.mapper.UserMapper.toEntity
+import com.mamsky.accenture.data.model.mapper.UserMapper.toViewParam
 import com.mamsky.accenture.data.model.UserViewParam
 import com.mamsky.accenture.data.remote.api.UserApi
 import kotlinx.coroutines.Dispatchers
@@ -18,7 +17,7 @@ import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
     private val userApi: UserApi,
-    private var userDao: UserDetailFavoriteDao
+    private val userDao: UserDetailFavoriteDao
 ): UserRepository {
 
     override suspend fun getUsers(): BaseResult<List<UserViewParam>> {
@@ -64,18 +63,12 @@ class UserRepositoryImpl @Inject constructor(
         }
     }
 
-    private fun getDummy(): List<UserViewParam> {
-        with(Dispatchers.IO) {
-            val response = DummyExt.getDummyResponse()
-            printLog("data size ${response.size} data $response")
-            return response.map {
-                it.toViewParam().apply { isFavorite = true }
-            }
-        }
-    }
-
     override fun getFavorites(): Flow<List<UserViewParam>> {
         return userDao.fetchAllUsers().map { it.mapToViewParam() }
+    }
+
+    override fun searchUserFromDb(query: String): Flow<List<UserViewParam>> {
+        return userDao.getByUsername(query).map { it.mapToViewParam() }
     }
 
     override suspend fun saveUserAsFavorite(data: UserDetailViewParam) {
@@ -90,11 +83,9 @@ class UserRepositoryImpl @Inject constructor(
         return try {
             with(Dispatchers.IO) {
                 val existed = userDao.isUserExisted(id)
-                printLog("existed id $existed")
-                existed            }
-        } catch (e: Exception) {
-            printLog("existed id catch")
-            e.printStackTrace()
+                existed
+            }
+        } catch (e: Exception) { e.printStackTrace()
             false
         }
     }
@@ -103,11 +94,9 @@ class UserRepositoryImpl @Inject constructor(
         return try {
             with(Dispatchers.IO) {
                 val existed = userDao.isUserExisted(userName)
-                printLog("existed id $existed")
-                existed            }
-        } catch (e: Exception) {
-            printLog("existed id catch")
-            e.printStackTrace()
+                existed
+            }
+        } catch (e: Exception) { e.printStackTrace()
             false
         }
     }

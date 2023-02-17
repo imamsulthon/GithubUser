@@ -1,6 +1,8 @@
-package com.mamsky.accenture.data.model
+package com.mamsky.accenture.data.model.mapper
 
 import com.mamsky.accenture.data.local.UserDetailEntity
+import com.mamsky.accenture.data.model.UserDetailViewParam
+import com.mamsky.accenture.data.model.UserViewParam
 import com.mamsky.accenture.data.remote.response.UserDetailResponse
 import com.mamsky.accenture.data.remote.response.UserResponse
 

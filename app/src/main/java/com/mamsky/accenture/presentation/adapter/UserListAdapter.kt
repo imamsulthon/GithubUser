@@ -1,5 +1,6 @@
 package com.mamsky.accenture.presentation.adapter
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -13,6 +14,12 @@ class UserListAdapter(
     private var list: List<UserViewParam>,
     private val callback: (login: String) -> Unit?,
 ): RecyclerView.Adapter<UserListAdapter.ViewHolder>() {
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateData(list: List<UserViewParam>) {
+        this.list = list
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
         ItemUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)

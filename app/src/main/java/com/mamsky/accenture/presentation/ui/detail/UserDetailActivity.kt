@@ -1,4 +1,4 @@
-package com.mamsky.accenture.presentation.ui
+package com.mamsky.accenture.presentation.ui.detail
 
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -7,13 +7,12 @@ import com.mamsky.accenture.R
 import com.mamsky.accenture.base.BaseActivity
 import com.mamsky.accenture.data.model.UserDetailViewParam
 import com.mamsky.accenture.databinding.ActivityUserDetailBinding
-import com.mamsky.accenture.presentation.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class UserDetailActivity : BaseActivity<ActivityUserDetailBinding>() {
 
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: DetailViewModel by viewModels()
 
     companion object {
         const val TAG_DATA = "login"

@@ -15,6 +15,8 @@ interface UserRepository {
 
     fun getFavorites(): Flow<List<UserViewParam>>
 
+    fun searchUserFromDb(query: String): Flow<List<UserViewParam>>
+
     suspend fun saveUserAsFavorite(data: UserDetailViewParam)
 
     suspend fun clearUserAsFavorite(data: UserDetailViewParam)
