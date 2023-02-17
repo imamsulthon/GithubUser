@@ -4,6 +4,7 @@ import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.mamsky.accenture.BuildConfig
+import com.mamsky.accenture.utils.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,7 +25,7 @@ object NetworkProvider {
     @Singleton
     fun retrofitClient(client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://api.github.com/")
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .client(client)

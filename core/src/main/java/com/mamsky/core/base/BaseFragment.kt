@@ -1,4 +1,4 @@
-package com.mamsky.accenture.base
+package com.mamsky.core.base
 
 import android.content.Context
 import android.os.Bundle

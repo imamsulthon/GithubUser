@@ -1,6 +1,6 @@
 package com.mamsky.accenture.data.repository
 
-import com.mamsky.accenture.base.BaseResult
+import com.mamsky.core.base.BaseResult
 import com.mamsky.accenture.data.model.UserDetailViewParam
 import com.mamsky.accenture.data.model.UserViewParam
 import kotlinx.coroutines.flow.Flow

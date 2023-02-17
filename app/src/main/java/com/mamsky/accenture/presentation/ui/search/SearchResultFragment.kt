@@ -1,7 +1,7 @@
 package com.mamsky.accenture.presentation.ui.search
 
 import com.mamsky.accenture.R
-import com.mamsky.accenture.base.BaseFragment
+import com.mamsky.core.base.BaseFragment
 import com.mamsky.accenture.databinding.FragmentUserListBinding
 import dagger.hilt.android.AndroidEntryPoint
 

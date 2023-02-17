@@ -1,7 +1,7 @@
 package com.mamsky.accenture.data.repository
 
 import android.util.Log
-import com.mamsky.accenture.base.BaseResult
+import com.mamsky.core.base.BaseResult
 import com.mamsky.accenture.data.local.UserDetailFavoriteDao
 import com.mamsky.accenture.data.model.UserDetailViewParam
 import com.mamsky.accenture.data.model.mapper.UserMapper.emptyUserDetail

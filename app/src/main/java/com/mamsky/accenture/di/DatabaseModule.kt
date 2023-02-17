@@ -2,8 +2,9 @@ package com.mamsky.accenture.di
 
 import android.app.Application
 import androidx.room.Room
-import com.mamsky.accenture.data.local.AppDatabase
+import com.mamsky.accenture.utils.AppDatabase
 import com.mamsky.accenture.data.local.UserDetailFavoriteDao
+import com.mamsky.accenture.utils.APP_DATABASE_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,7 +21,7 @@ object DatabaseModule {
         return Room.databaseBuilder(
             app,
             AppDatabase::class.java,
-            "user_favorite_database"
+            APP_DATABASE_NAME
         ).fallbackToDestructiveMigration()
             .build()
     }

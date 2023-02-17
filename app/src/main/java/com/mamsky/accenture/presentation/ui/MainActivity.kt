@@ -6,7 +6,7 @@ import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mamsky.accenture.R
-import com.mamsky.accenture.base.BaseActivity
+import com.mamsky.core.base.BaseActivity
 import com.mamsky.accenture.databinding.ActivityMainBinding
 import com.mamsky.accenture.presentation.adapter.HomeTabAdapter
 import com.mamsky.accenture.presentation.ui.favorite.FavoriteFragment

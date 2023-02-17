@@ -1,4 +1,4 @@
-package com.mamsky.accenture.base
+package com.mamsky.core.base
 
 sealed class BaseResult<out T: Any> {
     data class Success<out T: Any>(val data: T) : BaseResult<T>()

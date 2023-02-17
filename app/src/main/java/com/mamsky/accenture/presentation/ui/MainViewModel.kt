@@ -2,7 +2,7 @@ package com.mamsky.accenture.presentation.ui
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.mamsky.accenture.base.BaseResult
+import com.mamsky.core.base.BaseResult
 import com.mamsky.accenture.data.model.UserViewParam
 import com.mamsky.accenture.data.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
