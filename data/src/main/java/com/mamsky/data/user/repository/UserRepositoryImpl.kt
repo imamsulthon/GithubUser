@@ -1,15 +1,15 @@
-package com.mamsky.accenture.data.repository
+package com.mamsky.data.user.repository
 
 import android.util.Log
 import com.mamsky.core.base.BaseResult
-import com.mamsky.accenture.data.local.UserDetailFavoriteDao
-import com.mamsky.accenture.data.model.UserDetailViewParam
-import com.mamsky.accenture.data.model.mapper.UserMapper.emptyUserDetail
-import com.mamsky.accenture.data.model.mapper.UserMapper.mapToViewParam
-import com.mamsky.accenture.data.model.mapper.UserMapper.toEntity
-import com.mamsky.accenture.data.model.mapper.UserMapper.toViewParam
-import com.mamsky.accenture.data.model.UserViewParam
-import com.mamsky.accenture.data.remote.api.UserApi
+import com.mamsky.data.user.local.UserDetailFavoriteDao
+import com.mamsky.data.user.model.UserDetailViewParam
+import com.mamsky.data.user.model.mapper.UserMapper.emptyUserDetail
+import com.mamsky.data.user.model.mapper.UserMapper.mapToViewParam
+import com.mamsky.data.user.model.mapper.UserMapper.toEntity
+import com.mamsky.data.user.model.mapper.UserMapper.toViewParam
+import com.mamsky.data.user.model.UserViewParam
+import com.mamsky.data.user.remote.api.UserApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

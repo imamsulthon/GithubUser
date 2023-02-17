@@ -1,4 +1,4 @@
-package com.mamsky.accenture.data.local
+package com.mamsky.data.user.local
 
 import androidx.annotation.NonNull
 import androidx.room.ColumnInfo

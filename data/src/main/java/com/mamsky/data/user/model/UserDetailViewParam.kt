@@ -1,4 +1,4 @@
-package com.mamsky.accenture.data.model
+package com.mamsky.data.user.model
 
 data class UserDetailViewParam(
     val id: Int,

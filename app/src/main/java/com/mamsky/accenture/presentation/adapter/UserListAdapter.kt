@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mamsky.accenture.R
-import com.mamsky.accenture.data.model.UserViewParam
+import com.mamsky.data.user.model.UserViewParam
 import com.mamsky.accenture.databinding.ItemUserBinding
 
 class UserListAdapter(

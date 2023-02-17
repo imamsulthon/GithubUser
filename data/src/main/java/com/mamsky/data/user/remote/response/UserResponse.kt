@@ -1,4 +1,4 @@
-package com.mamsky.accenture.data.remote.response
+package com.mamsky.data.user.remote.response
 
 import com.google.gson.annotations.SerializedName
 

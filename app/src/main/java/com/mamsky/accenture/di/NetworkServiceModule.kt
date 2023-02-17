@@ -1,6 +1,6 @@
 package com.mamsky.accenture.di
 
-import com.mamsky.accenture.data.remote.api.UserApi
+import com.mamsky.data.user.remote.api.UserApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

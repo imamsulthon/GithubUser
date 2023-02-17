@@ -2,8 +2,8 @@ package com.mamsky.accenture.utils
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.mamsky.accenture.data.local.UserDetailEntity
-import com.mamsky.accenture.data.local.UserDetailFavoriteDao
+import com.mamsky.data.user.local.UserDetailEntity
+import com.mamsky.data.user.local.UserDetailFavoriteDao
 
 @Database(
     entities = [UserDetailEntity::class],

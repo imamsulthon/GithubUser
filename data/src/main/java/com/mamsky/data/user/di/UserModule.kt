@@ -1,13 +1,12 @@
-package com.mamsky.accenture.data.di
+package com.mamsky.data.user.di
 
-import com.mamsky.accenture.data.local.UserDetailFavoriteDao
-import com.mamsky.accenture.data.remote.api.UserApi
-import com.mamsky.accenture.data.repository.UserRepository
-import com.mamsky.accenture.data.repository.UserRepositoryImpl
+import com.mamsky.data.user.local.UserDetailFavoriteDao
+import com.mamsky.data.user.remote.api.UserApi
+import com.mamsky.data.user.repository.UserRepository
+import com.mamsky.data.user.repository.UserRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 

@@ -1,10 +1,10 @@
-package com.mamsky.accenture.data.model.mapper
+package com.mamsky.data.user.model.mapper
 
-import com.mamsky.accenture.data.local.UserDetailEntity
-import com.mamsky.accenture.data.model.UserDetailViewParam
-import com.mamsky.accenture.data.model.UserViewParam
-import com.mamsky.accenture.data.remote.response.UserDetailResponse
-import com.mamsky.accenture.data.remote.response.UserResponse
+import com.mamsky.data.user.local.UserDetailEntity
+import com.mamsky.data.user.model.UserDetailViewParam
+import com.mamsky.data.user.model.UserViewParam
+import com.mamsky.data.user.remote.response.UserDetailResponse
+import com.mamsky.data.user.remote.response.UserResponse
 
 object UserMapper {
 

@@ -1,8 +1,8 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'com.google.dagger.hilt.android'
 }
 
 apply from: '../shared_dependencies.gradle'
@@ -11,20 +11,19 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.mamsky.accenture"
         minSdk 23
         targetSdk 33
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -44,7 +43,6 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", includes: ["*.jar"])
+    // specific dependencies related to data
     implementation project(":core")
-    implementation project(":data")
 }

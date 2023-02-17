@@ -5,7 +5,7 @@ import androidx.activity.viewModels
 import com.bumptech.glide.Glide
 import com.mamsky.accenture.R
 import com.mamsky.core.base.BaseActivity
-import com.mamsky.accenture.data.model.UserDetailViewParam
+import com.mamsky.data.user.model.UserDetailViewParam
 import com.mamsky.accenture.databinding.ActivityUserDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 

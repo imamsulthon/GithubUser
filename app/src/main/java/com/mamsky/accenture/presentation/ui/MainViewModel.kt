@@ -3,8 +3,8 @@ package com.mamsky.accenture.presentation.ui
 import android.util.Log
 import androidx.lifecycle.*
 import com.mamsky.core.base.BaseResult
-import com.mamsky.accenture.data.model.UserViewParam
-import com.mamsky.accenture.data.repository.UserRepository
+import com.mamsky.data.user.model.UserViewParam
+import com.mamsky.data.user.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

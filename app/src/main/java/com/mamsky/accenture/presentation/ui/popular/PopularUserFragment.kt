@@ -8,7 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mamsky.accenture.R
 import com.mamsky.core.base.BaseFragment
-import com.mamsky.accenture.data.model.UserViewParam
+import com.mamsky.data.user.model.UserViewParam
 import com.mamsky.accenture.databinding.FragmentUserListBinding
 import com.mamsky.accenture.presentation.adapter.UserListAdapter
 import com.mamsky.accenture.presentation.ui.MainViewModel
