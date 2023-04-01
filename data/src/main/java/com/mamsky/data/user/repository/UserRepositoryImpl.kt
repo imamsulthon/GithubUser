@@ -13,6 +13,7 @@ import com.mamsky.data.user.remote.api.UserApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
@@ -22,12 +23,12 @@ class UserRepositoryImpl @Inject constructor(
 
     override suspend fun getUsers(): BaseResult<List<UserViewParam>> {
         return try {
-            with(Dispatchers.IO) {
+            withContext(Dispatchers.IO) {
                 val response = userApi.getUsers()
                 val users = response.map { it.toViewParam() }
                 when {
-                    response.isNullOrEmpty() -> BaseResult.Error("error", 400)
-                    users.isEmpty() || users.isNullOrEmpty() -> BaseResult.Empty
+                    response.isEmpty() -> BaseResult.Error("error", 400)
+                    users.isEmpty() -> BaseResult.Empty
                     else -> BaseResult.Success(users)
                 }
             }
@@ -38,7 +39,7 @@ class UserRepositoryImpl @Inject constructor(
 
     override suspend fun getUserDetails(userName: String): UserDetailViewParam {
         return try {
-            with(Dispatchers.IO) {
+            withContext(Dispatchers.IO) {
                 val response = userApi.getDetailUser(userName)
                 response.toViewParam()
             }
@@ -81,7 +82,7 @@ class UserRepositoryImpl @Inject constructor(
 
     override suspend fun isFavorite(id: Int): Boolean {
         return try {
-            with(Dispatchers.IO) {
+            withContext(Dispatchers.IO) {
                 val existed = userDao.isUserExisted(id)
                 existed
             }
@@ -92,7 +93,7 @@ class UserRepositoryImpl @Inject constructor(
 
     override suspend fun isFavorite(userName: String): Boolean {
         return try {
-            with(Dispatchers.IO) {
+            withContext(Dispatchers.IO) {
                 val existed = userDao.isUserExisted(userName)
                 existed
             }
